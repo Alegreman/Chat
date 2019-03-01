@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { FIREBASE_CONFIG } from './app.firebase.config'
 import { AuthService } from '../providers/auth/auth.service';
 import { DataService } from '../providers/data/data.service';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DataService } from '../providers/data/data.service';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

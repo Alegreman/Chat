@@ -23,6 +23,7 @@ export class LoginFormComponent {
   }
   navigateToRegisterPage(){
     this.navCtrl.push('RegisterPage');
+    console.log('as');
 
   }
 
