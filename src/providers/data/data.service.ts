@@ -11,6 +11,7 @@ export class DataService {
   
   profileObject: AngularFireObject<Profile>
   profileListObs: AngularFireList<Profile>
+  profileList: AngularFireList<Profile>
   constructor(private database: AngularFireDatabase) {
 
   }
@@ -22,10 +23,12 @@ export class DataService {
     return this.profileObject;
     }
     
-    searchUser(firstName: string) {
-    const query = this.database.list('/profiles',ref => ref.orderByChild('firstName').equalTo(firstName));
-    
-    return query.valueChanges();
+    searchUser(firstName:string) {
+      this.profileList = this.database.list('/profiles/', query => { 
+       let q = query.orderByChild('firstName').equalTo(firstName).limitToFirst(1);
+       return q;
+       });
+      return this.profileList.snapshotChanges();
     }
     
     async saveProfile(user: User, profile: Profile){
