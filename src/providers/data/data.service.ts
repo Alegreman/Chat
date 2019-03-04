@@ -28,7 +28,7 @@ export class DataService {
        let q = query.orderByChild('firstName').equalTo(firstName).limitToFirst(1);
        return q;
        });
-      return this.profileList.snapshotChanges();
+      return this.profileList.snapshotChanges().take(1);
     }
     
     async saveProfile(user: User, profile: Profile){
