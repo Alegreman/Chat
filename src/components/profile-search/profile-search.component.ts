@@ -16,8 +16,8 @@ export class ProfileSearchComponent{
 
     }
 
-    searchUser(query:string){
-        this.data.searchUser(query).
+    searchUser(qyery:string){
+        this.data.searchUser(this.query).
         subscribe(profiles => {
         console.log(profiles)
         this.profileList

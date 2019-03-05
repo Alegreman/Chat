@@ -3,11 +3,14 @@
 
   <ion-navbar>
     <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button (click)="navigateToEditProfilePage()">Edit</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-<app-profile-view></app-profile-view>
+<app-profile-view (existingProfile)="getExistingProfile($event)" ></app-profile-view>
 </ion-content>
