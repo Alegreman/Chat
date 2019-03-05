@@ -18,6 +18,7 @@ import { FormsModule } from "@angular/forms";
   declarations: [
     MyApp,
     
+    
   ],
   imports: [
     BrowserModule,
