@@ -12,6 +12,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config'
 import { AuthService } from '../providers/auth/auth.service';
 import { DataService } from '../providers/data/data.service';
 import { FormsModule } from "@angular/forms";
+import { ChatService } from '../providers/chat/chat.service';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FormsModule } from "@angular/forms";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    DataService
+    DataService,
+    ChatService
   ]
 })
 export class AppModule {}

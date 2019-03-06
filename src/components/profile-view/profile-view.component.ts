@@ -18,7 +18,8 @@ export class ProfileViewComponent implements OnInit{
 
     @Output() existingProfile: EventEmitter<Profile>;
 
-    constructor(private loading: LoadingController, private data: DataService, private auth: AuthService){
+    constructor(private loading: LoadingController, private data: DataService, 
+        private auth: AuthService){
         
         this.existingProfile = new EventEmitter<Profile>();
         this.loader = this.loading.create({
@@ -29,15 +30,14 @@ export class ProfileViewComponent implements OnInit{
 
     ngOnInit(){
         this.loader.present();
-        this.auth.getAuthenticatedUser().subscribe(auth =>{
-            this.authUser = auth;
-
-            this.data.getProfile(this.authUser).valueChanges().subscribe((profile: Profile) => {
-                this.userProfile = <Profile>profile;
-                this.existingProfile.emit(this.userProfile);
+        
+        this.data.getAuthenticatedUserProfile().subscribe( profile => {
+            this.userProfile = <Profile>profile;
+            this.existingProfile.emit(this.userProfile);
                 this.loader.dismiss();
-            })
         })
+        
+       
     }
 
 }

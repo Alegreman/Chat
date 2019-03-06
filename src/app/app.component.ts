@@ -12,13 +12,14 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private auth: AuthService) {
     
-    this.auth.getAuthenticatedUser().subscribe( auth => {
-      !auth ?
-        this.rootPage = 'LoginPage' :
-        this.rootPage = 'MessagePage';
-    })
+    //this.auth.getAuthenticatedUser().subscribe( auth => {
+    //  !auth ?
+    //    this.rootPage = 'LoginPage' :
+    //    this.rootPage = 'MessagePage';
+    //})
     
     platform.ready().then(() => {
+      this.rootPage = 'LoginPage';
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
