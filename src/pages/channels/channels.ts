@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { ChatService } from '../../providers/chat/chat.service';
 import { Observable } from 'rxjs';
 import { Channel } from '../../models/channel/channel.interface';
+import { AngularFireList } from 'angularfire2/database';
 
 
 @IonicPage()
@@ -12,6 +13,7 @@ import { Channel } from '../../models/channel/channel.interface';
 })
 export class ChannelsPage {
 
+  channelAFList: AngularFireList<Channel>;
   channelList: Observable<Channel[]>;
 
   constructor(private chat: ChatService,private alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
@@ -19,6 +21,10 @@ export class ChannelsPage {
 
   ionViewWillLoad() {
     this.getChannels();
+  }
+
+  selectChannel(channel:Channel){
+    this.navCtrl.push('ChannelChatPage',{channel})
   }
 
 
@@ -44,6 +50,10 @@ export class ChannelsPage {
   }
 
   getChannels(){
-    this.channelList = this.chat.getChannelListReference().valueChanges();
+    this.channelAFList = this.chat.getChannelListReference();
+    this.channelList = this.channelAFList.snapshotChanges().map(
+      changes => {
+        return changes.map( c => ({ $key: c.payload.key, ... c.payload.val()}));
+      });
   }
 }

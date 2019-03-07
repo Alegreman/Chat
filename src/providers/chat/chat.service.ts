@@ -17,4 +17,8 @@ export class ChatService{
         return this.database.list(`channel-names`);
     }
 
+    getChannelChatReference(channelKey: string){
+        return this.database.list(`channels/${channelKey}`);
+    }
+
 }
